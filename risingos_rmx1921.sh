@@ -9,9 +9,14 @@ mkdir -p risingos && cd risingos
 
 # ───────────────────────── 2. Init & sync RisingOS ──────────────────────
 repo init -u https://github.com/RisingOS-Revived/android -b qpr2 --git-lfs
+
+# --- repo sync ---
 repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
 
-# ───────────────────────── 3. Clone device/vendor/kernel ────────────────
+# optional crave post‑sync helper (silently skip if missing)
+/opt/crave/resync.sh || true
+
+# ───────────────────────── 3. Clone device/vendor/kernel ────────────────/vendor/kernel ────────────────
 # (replace branches if needed)
 git clone --depth=1 https://github.com/YouSummoner/device_realme_RMX1921  -b 15 device/realme/RMX1921
 git clone --depth=1 https://github.com/YouSummoner/vendor_realme_RMX1921  -b 14 vendor/realme/RMX1921
