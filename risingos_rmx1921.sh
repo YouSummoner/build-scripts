@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 set -e  # abort on first error
 
-# ───────────────────────── 1. Create workspace ─────────────────────────
-# Crave usually starts in a job‑specific work dir (e.g. /workspace). We keep
-# everything relative so it works regardless of entry path.
-mkdir -p rom && cd rom
-mkdir -p risingos && cd risingos
-
-# ───────────────────────── 2. Init & sync RisingOS ──────────────────────
+# ───────────────────────── 1. Init & sync RisingOS ──────────────────────
 repo init -u https://github.com/RisingOS-Revived/android -b qpr2 --git-lfs
+
+# --- clean project-object cache to prevent hook mismatch loop ---
+rm -rf .repo/project-objects
+rm -rf .repo/local_manifests
 
 # --- repo sync ---
 repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
@@ -16,7 +14,7 @@ repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc 
 # optional crave post‑sync helper (silently skip if missing)
 /opt/crave/resync.sh || true
 
-# ───────────────────────── 3. Clone device/vendor/kernel ────────────────/vendor/kernel ────────────────
+# ───────────────────────── 3. Clone device/vendor/kernel ────────────────
 # (replace branches if needed)
 git clone --depth=1 https://github.com/YouSummoner/device_realme_RMX1921  -b 15 device/realme/RMX1921
 git clone --depth=1 https://github.com/YouSummoner/vendor_realme_RMX1921  -b 14 vendor/realme/RMX1921
