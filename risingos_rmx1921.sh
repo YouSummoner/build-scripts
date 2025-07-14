@@ -9,10 +9,11 @@ rm -rf .repo/project-objects
 rm -rf .repo/local_manifests
 
 # Let Crave's helper perform the heavy sync/repair work
-/opt/crave/resync.sh || {
-  echo "❌ crave resync failed — aborting build."; exit 1;
-}
-
+if [ -f /usr/bin/resync ]; then
+    /usr/bin/resync
+else
+    /opt/crave/resync.sh
+fi
 # ───────────────────────── 3. Clone device/vendor/kernel ────────────────
 # (replace branches if needed)
 git clone --depth=1 https://github.com/YouSummoner/device_realme_RMX1921  -b 15 device/realme/RMX1921
