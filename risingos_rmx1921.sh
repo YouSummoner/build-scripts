@@ -8,11 +8,10 @@ repo init -u https://github.com/RisingOS-Revived/android -b qpr2 --git-lfs
 rm -rf .repo/project-objects
 rm -rf .repo/local_manifests
 
-# --- repo sync ---
-repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
-
-# optional crave post‑sync helper (silently skip if missing)
-/opt/crave/resync.sh || true
+# Let Crave's helper perform the heavy sync/repair work
+/opt/crave/resync.sh || {
+  echo "❌ crave resync failed — aborting build."; exit 1;
+}
 
 # ───────────────────────── 3. Clone device/vendor/kernel ────────────────
 # (replace branches if needed)
