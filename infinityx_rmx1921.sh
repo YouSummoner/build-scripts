@@ -42,8 +42,7 @@ export BUILD_HOSTNAME="crave"
 export TZ="Asia/Kolkata"
 
 # Generate makefiles & lunch
-gk -f
-lunch lineage_RMX1921-user
+lunch lineage_RMX1921-userdebug
 
 # ───────────────────────── 7. Clean + build ─────────────────────────────
 mka bacon
