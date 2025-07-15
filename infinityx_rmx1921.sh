@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 set -e  # abort on first error
 
+# --- clean project-object cache to prevent hook mismatch loop ---
+rm -rf .repo/local_manifests
+rm -rf device/realme/RMX1921
+rm -rf vendor/realme/RMX1921
+rm -rf kernel/realme/sdm710
+rm -rf prebuilts/clang/host/linux-x86
+rm -rf build/soong/fsgen
+
 # ───────────────────────── 1. Init & sync InfinityX ──────────────────────
 repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
-
-# --- clean project-object cache to prevent hook mismatch loop ---
-rm -rf .repo/project-objects
-rm -rf .repo/local_manifests
 
 # Let Crave's helper perform the heavy sync/repair work
 if [ -f /usr/bin/resync ]; then
