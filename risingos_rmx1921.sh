@@ -19,9 +19,9 @@ else
 fi
 # ───────────────────────── 3. Clone device/vendor/kernel ────────────────
 # (replace branches if needed)
-git clone --depth=1 https://github.com/YouSummoner/device_realme_RMX1921  -b 15 device/realme/RMX1921
-git clone --depth=1 https://github.com/YouSummoner/vendor_realme_RMX1921  -b 15 vendor/realme/RMX1921
-git clone --depth=1 https://github.com/YouSummoner/android_kernel_realme_sdm710  -b 14 kernel/realme/sdm710
+git clone --depth=1 https://github.com/YouSummoner/device_realme_RMX1921 -b 15 device/realme/RMX1921
+git clone --depth=1 https://github.com/YouSummoner/vendor_realme_RMX1921 -b 15 vendor/realme/RMX1921
+git clone --depth=1 https://github.com/YouSummoner/android_kernel_realme_sdm710 -b 14 kernel/realme/sdm710
 
 # ───────────────────────── 4. Clone compiler ────────────────────────────
 git clone --depth=1 https://github.com/kdrag0n/proton-clang prebuilts/clang/host/linux-x86/clang-proton
