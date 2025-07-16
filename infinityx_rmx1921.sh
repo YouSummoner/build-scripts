@@ -36,7 +36,7 @@ export TZ="Asia/Kolkata"
 source build/envsetup.sh
 
 # Generate makefiles & lunch
-lunch lineage_RMX1921-userdebug
+lunch infinity_RMX1921-userdebug
 
 # ───────────────────────── 7. Clean + build ─────────────────────────────
 mka bacon
