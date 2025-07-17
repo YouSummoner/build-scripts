@@ -24,13 +24,13 @@ git clone --depth=1 https://github.com/kdrag0n/proton-clang prebuilts/clang/host
 
 # ───────────────────────── 5. Apply dt2w patch ─────────────────────────
 
-# ───────────────────────── 6. Build environment ────────────────────────
-source build/envsetup.sh
-
 # Build metadata (place *after* envsetup so Rising helper picks them up)
 export BUILD_USERNAME="YouSummoner"
 export BUILD_HOSTNAME="crave"
 export TZ="Asia/Kolkata"
+
+# ───────────────────────── 6. Build environment ────────────────────────
+source build/envsetup.sh
 
 # Generate makefiles & lunch
 lunch rising_RMX1921-userdebug
