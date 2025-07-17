@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e  # abort on first error
 
 # --- clean project-object cache to prevent hook mismatch loop ---
 rm -rf .repo/local_manifests
